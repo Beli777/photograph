@@ -3,10 +3,11 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
-
+import toastr from 'toastr'
 
 import App from './App'
 import DashboardPage from './pages/DashboardPage'
+
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
@@ -27,9 +28,11 @@ router.beforeEach((to, from, next) => {
         const authUser = JSON.parse(window.localStorage.getItem('authUser'))
         if (authUser && authUser.access_token){
             next()
+            toastr.success('User logged in')
         }
         else{
             next({name:'home'})
+            toastr.error('User is not logged in, please log in')
         }
     }
     next()

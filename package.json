@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "jquery": "^3.1.1",
     "node-sass": "^4.5.0",
     "sass-loader": "^5.0.1",
+    "toastr": "^2.1.2",
     "vue": "^2.1.10",
     "vue-resource": "^1.2.0",
     "vue-router": "^2.2.0"
