@@ -64,6 +64,10 @@ export default {
 }
 </script>
 
-<style lang="sass">
-    @import './assets/css/bootstrap.css'
+<style lang="scss">
+    @import './assets/css/bootstrap.css';
+
+    .row{
+        margin: 10% auto;
+    }
 </style>
