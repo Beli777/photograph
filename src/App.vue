@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper" id="home-wrapper">
+      <h1>Welcome to <span>Photogram</span></h1>
       <section class="login">
           <div class="row">
             <div class="col-md-6 col-md-push-3">
@@ -60,17 +61,24 @@ export default {
                     // })
                 }
             }, (response) => {
-              toastr.warning('Username or password is incorrect, please try again')
+              toastr.warning('Username or password is incorrect, please try again !')
         });
     }
 }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     @import './assets/css/bootstrap.css';
 
     .row{
-        margin: 10% auto;
+        margin: 3% auto;
+    }
+    h1{
+        text-align: center;
+        margin-top: 10rem;
+        span{
+            color: orange;
+        }
     }
 </style>
