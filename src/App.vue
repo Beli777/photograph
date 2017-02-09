@@ -30,6 +30,7 @@
 
 <script>
 import {apiDomain, getHeader, userUrl} from './config'
+import toastr from 'toastr'
 export default {
     data(){
         return{
@@ -58,9 +59,11 @@ export default {
                     //     this.$router.push({name: 'dashboard'})
                     // })
                 }
-            })
-        }
+            }, (response) => {
+              toastr.warning('Username or password is incorrect, please try again')
+        });
     }
+}
 }
 </script>
 
