@@ -4,7 +4,11 @@
       <section class="login">
           <div class="row">
             <div class="col-md-6 col-md-push-3">
-                <div class="panel panel-default">
+                <div v-if="show" class="panel panel-default">
+                    <ul class="nav nav-tabs">
+                      <li><a>Login</a></li>
+                      <li><a @click='show = !show'>Register</a></li>
+                    </ul>
                     <div class="panel-heading"><strong>Login</strong></div>
                         <div class="panel-body">
                             <form v-on:submit.prevent="handleLoginFormSubmit()">
@@ -20,13 +24,15 @@
 
                                 <button class="btn btn-primary">Login</button>
                             </form>
-
-
                         </div>
                     </div>
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><strong>Login</strong></div>
+                    <div v-else class="panel panel-default">
+                        <ul class="nav nav-tabs">
+                          <li><a @click='show = !show'>Login</a></li>
+                          <li><a>Register</a></li>
+                        </ul>
+                        <div class="panel-heading"><strong>Register</strong></div>
                             <div class="panel-body">
                                 <form v-on:submit.prevent="handleRegisterFormSubmit()">
                                     <div class="form-group">
@@ -51,14 +57,11 @@
 
                                     <button class="btn btn-primary">Register</button>
                                 </form>
-
-
                             </div>
                         </div>
                 </div>
 
             </div>
-
           </div>
       </section>
   </div>
@@ -75,7 +78,8 @@ export default {
             username: '',
             name: '',
             registeremail: '',
-            registerpassword: ''
+            registerpassword: '',
+            show: true
         }
     },
     methods:{
@@ -140,5 +144,21 @@ export default {
     .register{
         margin-top:-30px;
         float:right;
+    }
+    .nav-tabs{
+        background-color:#158cba;
+        border:0;
+        a{
+            border:0;
+            margin: 0;
+            cursor: pointer;
+            color: #fff;
+                padding: 15px 25px;
+            &:hover{
+                padding: 15px 25px;
+                border-radius: 0;
+                color: #000;
+            }
+        }
     }
 </style>
