@@ -4,9 +4,10 @@
       <section class="login">
           <div class="row">
             <div class="col-md-6 col-md-push-3">
+
                 <div v-if="show" class="panel panel-default">
                     <ul class="nav nav-tabs">
-                      <li><a>Login</a></li>
+                      <li><a class="active">Login</a></li>
                       <li><a @click='show = !show'>Register</a></li>
                     </ul>
                     <div class="panel-heading"><strong>Login</strong></div>
@@ -30,7 +31,7 @@
                     <div v-else class="panel panel-default">
                         <ul class="nav nav-tabs">
                           <li><a @click='show = !show'>Login</a></li>
-                          <li><a>Register</a></li>
+                          <li><a class="active">Register</a></li>
                         </ul>
                         <div class="panel-heading"><strong>Register</strong></div>
                             <div class="panel-body">
@@ -134,6 +135,12 @@ export default {
     .row{
         margin: 3% auto;
     }
+    .fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
+}
     h1{
         text-align: center;
         margin-top: 10rem;
@@ -141,13 +148,12 @@ export default {
             color: orange;
         }
     }
-    .register{
-        margin-top:-30px;
-        float:right;
+    .login{
+        transition: .5s all ease-in;
     }
     .nav-tabs{
         background-color:#158cba;
-        border:0;
+        border-bottom: 1px solid #158cba;
         a{
             border:0;
             margin: 0;
@@ -159,6 +165,11 @@ export default {
                 border-radius: 0;
                 color: #000;
             }
+        }
+        .active{
+                background-color:orange;
+                    color: #fff;
+                    border-radius:0;
         }
     }
 </style>
