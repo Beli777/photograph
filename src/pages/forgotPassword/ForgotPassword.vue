@@ -9,11 +9,11 @@
                     <div class="panel-heading"><strong>Forgot Your Password</strong></div>
                         <div class="panel-body">
                             <form v-on:submit.prevent="handleForgotFormSubmit()">
-                                <div class="form-group">
+                                <div :class="{error: validation.hasError('email')}">
                                     <label>Email address</label>
-                                    <input class="form-control" placeholder="Enter your email adress" type="text" v-model='email'>
+                                    <input class="form-control" placeholder="Enter your email adress" type="email" v-model='email'>
                                 </div>
-
+                                <div class="message">{{ validation.firstError('email') }}</div>
                                 <button class="btn btn-primary">Send</button>
                             </form>
                         </div>
@@ -29,11 +29,22 @@
 <script>
 import {forgotPassword} from '../../config'
 import toastr from 'toastr'
+var Vue = require('vue');
+var SimpleVueValidation = require('simple-vue-validator');
+var Validator = SimpleVueValidation.Validator;
+
+Vue.use(SimpleVueValidation);
+
 export default {
     data(){
         return{
             email: ''
         }
+    },
+    validators: {
+      email: function(value) {
+        return Validator.value(value).required().email();
+      }
     },
     methods:{
         handleForgotFormSubmit (){
@@ -47,12 +58,6 @@ export default {
                     setTimeout(
                         this.$router.push({name: 'resetPassword'})
                     ,3000);
-                    // this.$http.get(apiDomain, {headers: getHeader()})
-                    // this.$router.push({name: 'dashboard'})
-                    // .then(response => {
-                    //     window.localStorage.setItem('authUser', JSON.stringify(authUser))
-                    //     this.$router.push({name: 'dashboard'})
-                    // })
                 }
             }, (response) => {
               toastr.warning('Email was not found in database !')

@@ -11,15 +11,18 @@
                             <form v-on:submit.prevent="handleResetFormSubmit()">
                                 <div class="form-group">
                                     <label>Email address</label>
-                                    <input class="form-control" placeholder="Enter your email adress" type="text" v-model='email'>
+                                    <input class="form-control" placeholder="Enter your email adress" type="email" v-model='email'>
+                                     <div class="message">{{ validation.firstError('email') }}</div>
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
                                     <input class="form-control" placeholder="Enter Your Password" type="password" v-model='password'>
+                                      <div class="message">{{ validation.firstError('password') }}</div>
                                 </div>
                                 <div class="form-group">
                                     <label>Repeat Password</label>
-                                    <input class="form-control" placeholder="Enter Your Password Again" type="password" v-model='password_confirmation'>
+                                    <input class="form-control" placeholder="Enter Your Password Again" type="password" v-model='repeat'>
+                                      <div class="message">{{ validation.firstError('repeat') }}</div>
                                 </div>
 
                                 <button class="btn btn-primary">Send</button>
@@ -37,6 +40,11 @@
 <script>
 import {resetPassword, getHeader} from '../../config'
 import toastr from 'toastr'
+var Vue = require('vue');
+var SimpleVueValidation = require('simple-vue-validator');
+var Validator = SimpleVueValidation.Validator;
+
+Vue.use(SimpleVueValidation);
 
 function getParameterByName(name, url) { if (!url) { url = window.location.href; } name = name.replace(/[\[\]]/g, "\\$&"); var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex.exec(url); if (!results) return null; if (!results[2]) return ''; return decodeURIComponent(results[2].replace(/\+/g, " ")); }
 const getToken = getParameterByName('token')
@@ -46,21 +54,34 @@ export default {
         return{
             email: '',
             password: '',
-            password_confirmation: ''
+            repeat: '',
+            submitted: false
         }
     },
+    validators: {
+        email: function(value) {
+          return Validator.value(value).required().email();
+      },
+      password: function (value) {
+        return Validator.value(value).required().minLength(6);
+      },
+      'repeat, password': function (repeat, password) {
+        if (this.submitted || this.validation.isTouched('repeat')) {
+          return Validator.value(repeat).required().match(password);
+        }
+    },
+    },
     methods:{
-
         handleResetFormSubmit (){
             const postData = {
                 email: this.email,
                 password: this.password,
-                password_confirmation: this.password_confirmation,
+                password_confirmation: this.repeat,
                 token: getToken
 
             }
-            console.log(postData)
             this.$http.post(resetPassword, postData)
+
             .then(response => {
                 if (response.status === 200){
                     toastr.success('New password has been added !')
@@ -125,5 +146,8 @@ export default {
                     color: #fff;
                     border-radius:0;
         }
+    }
+    .message{
+        color: red;
     }
 </style>

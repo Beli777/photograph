@@ -10,7 +10,6 @@ import ForgotPassword from './pages/forgotPassword/ForgotPassword'
 import ResetPassword from './pages/forgotPassword/ResetPassword'
 import DashboardPage from './pages/DashboardPage'
 
-
 Vue.use(VueRouter)
 Vue.use(VueResource)
 /* eslint-disable no-new */
