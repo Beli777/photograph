@@ -24,6 +24,7 @@
                                 </div>
 
                                 <button class="btn btn-primary">Login</button>
+                                <a class="forgotPassword" href='/forgot'>Forgot password</a>
                             </form>
                         </div>
                     </div>
@@ -57,6 +58,7 @@
                                     </div>
 
                                     <button class="btn btn-primary">Register</button>
+                                    <a class="forgotPassword" href='/forgot'>Forgot password</a>
                                 </form>
                             </div>
                         </div>
@@ -171,5 +173,8 @@ export default {
                     color: #fff;
                     border-radius:0;
         }
+    }
+    .forgotPassword{
+        margin-left: 1rem;
     }
 </style>

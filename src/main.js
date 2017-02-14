@@ -6,6 +6,8 @@ import VueRouter from 'vue-router'
 import toastr from 'toastr'
 
 import App from './App'
+import ForgotPassword from './pages/forgotPassword/ForgotPassword'
+import ResetPassword from './pages/forgotPassword/ResetPassword'
 import DashboardPage from './pages/DashboardPage'
 
 
@@ -15,6 +17,8 @@ Vue.use(VueResource)
 
 const routes = [
     {path: '/', component: App, name:'home'},
+    {path: '/forgot', component: ForgotPassword, name:'forgotPassword'},
+    {path: '/reset', component: ResetPassword, name:'resetPassword'},
     {path: '/dashboard', component: DashboardPage, name:'dashboard', meta: { requiresAuth: true}}
 ]
 
