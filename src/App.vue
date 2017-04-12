@@ -1,73 +1,61 @@
 <template>
   <div class="wrapper" id="home-wrapper">
-      <h1>Welcome to <span>Photogram</span></h1>
-      <section class="login">
-          <div class="row">
-            <div class="col-md-6 col-md-push-3">
+      <section class="smallWrapper">
 
-                <div v-if="show" class="panel panel-default">
-                    <ul class="nav nav-tabs">
-                      <li><a class="active">Login</a></li>
-                      <li><a @click='show = !show'>Register</a></li>
-                    </ul>
-                    <div class="panel-heading"><strong>Login</strong></div>
-                        <div class="panel-body">
-                            <form v-on:submit.prevent="handleLoginFormSubmit()">
-                                <div class="form-group">
-                                    <label>Email address</label>
-                                    <input class="form-control" placeholder="Enter your email adress" type="text" v-model='email'>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <input class="form-control" placeholder="Enter your password" type="password" v-model='password'>
-                                </div>
-
-                                <button class="btn btn-primary">Login</button>
-                                <a class="forgotPassword" href='/forgot'>Forgot password</a>
-                            </form>
-                        </div>
+        <div v-if="show" class="login">
+          <img class="login__background" src='./assets/img/background.jpg'/>
+          <div class="login__holder">
+            <h1 class="logo__white"><span>Photo</span>gram</h1>
+            <div class="form">
+                <form v-on:submit.prevent="handleLoginFormSubmit()">
+                    <div class="form__input">
+                        <icon class="icon" name="envelope-o"></icon>
+                        <input class="" placeholder="Enter your email adress" type="text" v-model='email'>
                     </div>
 
-                    <div v-else class="panel panel-default">
-                        <ul class="nav nav-tabs">
-                          <li><a @click='show = !show'>Login</a></li>
-                          <li><a class="active">Register</a></li>
-                        </ul>
-                        <div class="panel-heading"><strong>Register</strong></div>
-                            <div class="panel-body">
-                                <form v-on:submit.prevent="handleRegisterFormSubmit()">
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input class="form-control" placeholder="Enter your email adress" type="text" v-model='registeremail'>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Username</label>
-                                        <input class="form-control" placeholder="Enter your Username" type="text" v-model='username'>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Username</label>
-                                        <input class="form-control" placeholder="Enter your Name" type="text" v-model='name'>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input class="form-control" placeholder="Enter your password" type="password" v-model='registerpassword'>
-                                    </div>
-
-                                    <button class="btn btn-primary">Register</button>
-                                    <a class="forgotPassword" href='/forgot'>Forgot password</a>
-                                </form>
-                            </div>
-                        </div>
-                </div>
-
+                    <div class="form__input">
+                        <icon class="icon" name="lock"></icon>
+                        <input class="" placeholder="Enter your password" type="password" v-model='password'>
+                    </div>
+                    <a class="forgotPassword" href='/forgot'>Forgot password?</a>
+                    <button class="btn">Log in</button>
+                </form>
             </div>
+              <div class="switchLogin">Don't have account? <span><a @click='show = !show'>Sign up</a></span></div>
+              </div>
           </div>
-      </section>
-  </div>
+              <div v-else class="register">
+                      <h1 class="logo"><span>Photo</span>gram</h1>
+                      <div class="form">
+                          <form v-on:submit.prevent="handleRegisterFormSubmit()">
+                              <div class="form__input">
+                                  <icon class="icon" name="envelope-o"></icon>
+                                  <input class="" placeholder="Enter your email adress" type="text" v-model='registeremail'>
+                              </div>
+
+                              <div class="form__input">
+                                  <icon class="icon" name="lock"></icon>
+                                  <input class="" placeholder="Enter your password" type="password" v-model='registerpassword'>
+                              </div>
+
+                              <div class="form__input">
+                                  <icon class="icon" name="lock"></icon>
+                                  <input class="" placeholder="Enter your password" type="password" v-model='registerpassword'>
+                              </div>
+
+                              <div class="form__input">
+                                  <icon class="icon" name="user-o"></icon>
+                                  <input class="" placeholder="Username" type="text" v-model='name'>
+                              </div>
+                              <div class="terms">I accept to the <span>Terms & Privacy Policy</span></div>
+
+                              <button class="btn">Sign Up</button>
+                          </form>
+                      </div>
+                        <div class="switchLogin">Already have Account? <span><a @click='show = !show'>Log in</a></span></div>
+                  </div>
+                </section>
+              </div>
 </template>
 
 <script>
@@ -123,7 +111,7 @@ export default {
             }
         }, (response) => {
             if (response.error != ''){
-          toastr.error('Duplicated email, please try something else !')
+                toastr.error('Duplicated email, please try something else !')
             }
     });
 }
@@ -132,49 +120,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import './assets/css/bootstrap.css';
-
-    .row{
-        margin: 3% auto;
-    }
-    .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
-  opacity: 0
-}
-    h1{
-        text-align: center;
-        margin-top: 10rem;
-        span{
-            color: orange;
-        }
-    }
-    .login{
-        transition: .5s all ease-in;
-    }
-    .nav-tabs{
-        background-color:#158cba;
-        border-bottom: 1px solid #158cba;
-        a{
-            border:0;
-            margin: 0;
-            cursor: pointer;
-            color: #fff;
-                padding: 15px 25px;
-            &:hover{
-                padding: 15px 25px;
-                border-radius: 0;
-                color: #000;
-            }
-        }
-        .active{
-                background-color:orange;
-                    color: #fff;
-                    border-radius:0;
-        }
-    }
-    .forgotPassword{
-        margin-left: 1rem;
-    }
+  @import "/assets/scss/default.scss"
 </style>

@@ -5,6 +5,8 @@ import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import toastr from 'toastr'
 
+import 'vue-awesome/icons'
+import Icon from 'vue-awesome/components/Icon.vue'
 import App from './App'
 import ForgotPassword from './pages/forgotPassword/ForgotPassword'
 import ResetPassword from './pages/forgotPassword/ResetPassword'
@@ -12,6 +14,7 @@ import DashboardPage from './pages/DashboardPage'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
+Vue.component('icon', Icon)
 /* eslint-disable no-new */
 
 const routes = [
