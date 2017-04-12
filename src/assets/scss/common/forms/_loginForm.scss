@@ -22,12 +22,14 @@
   .forgotPassword{
     color: $colorWhite;
     font-size: 2rem;
-    margin-top: 1rem;
     display: block;
     font-weight: lighter;
   }
   .btn{
     margin-top: 25%;
+    &:hover{
+      color: $colorBlack;
+    }
   }
   .switchLogin{
     color: $colorWhite;

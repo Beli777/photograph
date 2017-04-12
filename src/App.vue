@@ -5,8 +5,8 @@
         <div v-if="show" class="login">
           <img class="login__background" src='./assets/img/background.jpg'/>
           <div class="login__holder">
-            <h1 class="logo__white"><span>Photo</span>gram</h1>
-            <div class="form">
+            <h1 class="logo__white animated fadeIn"><span>Photo</span>gram</h1>
+            <div class="form animated lightSpeedIn">
                 <form v-on:submit.prevent="handleLoginFormSubmit()">
                     <div class="form__input">
                         <icon class="icon" name="envelope-o"></icon>
@@ -21,12 +21,12 @@
                     <button class="btn">Log in</button>
                 </form>
             </div>
-              <div class="switchLogin">Don't have account? <span><a @click='show = !show'>Sign up</a></span></div>
+              <div class="switchLogin animated lightSpeedIn">Don't have account? <span><a @click='show = !show'>Sign up</a></span></div>
               </div>
           </div>
               <div v-else class="register">
-                      <h1 class="logo"><span>Photo</span>gram</h1>
-                      <div class="form">
+                      <h1 class="logo animated fadeIn"><span>Photo</span>gram</h1>
+                      <div class="form animated lightSpeedIn">
                           <form v-on:submit.prevent="handleRegisterFormSubmit()">
                               <div class="form__input">
                                   <icon class="icon" name="envelope-o"></icon>
@@ -52,7 +52,7 @@
                               <button class="btn">Sign Up</button>
                           </form>
                       </div>
-                        <div class="switchLogin">Already have Account? <span><a @click='show = !show'>Log in</a></span></div>
+                        <div class="switchLogin animated lightSpeedIn">Already have Account? <span><a @click='show = !show'>Log in</a></span></div>
                   </div>
                 </section>
               </div>
@@ -61,6 +61,7 @@
 <script>
 import {apiDomain, getHeader, userUrl, registerUrl} from './config'
 import toastr from 'toastr'
+
 export default {
     data(){
         return{

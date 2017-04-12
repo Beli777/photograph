@@ -9,11 +9,14 @@
 //------MIXINS
 @import 'mixins/breakpoints';
 // @import 'mixins/borderRadius';
-// @import 'mixins/transition';
+@import 'mixins/transition';
 // @import 'mixins/transform';
 // @import 'mixins/calc';
 // @import 'mixins/placeholder';
 // @import 'mixins/fontFace';
+
+//------COMMON
+@import 'lib/animate';
 
 //------MAIN CONFIG
 @import 'config/reset';
